@@ -20,7 +20,7 @@ class JsonReader:
         return kosisUrlList
     
     def create_kosis_apikey(json_data: dict) -> str:
-        return json_data.get('APIKEY', '')
+        return json_data.get('KOSISKEY', '')
     
     def splitStrbyComma(self, str) -> list:
         return str.split(',')

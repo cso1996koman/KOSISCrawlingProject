@@ -19,7 +19,14 @@ class KosisUrl:
             self.orgId = orgId
             self.tblId = tblId
         def getFullUrl(self) -> str:
-            return self.baseUrl + "&apiKey=" + self.apiKey + "&itmId= " + self.itmId + "&objL1= " + self.objL1 + "&objL2= " + self.objL2 + "&objL3= " + self.objL3 + "&objL4= " + self.objL4 + "&objL5= " + self.objL5 + "&objL6= " + self.objL6 + "&objL7= " + self.objL7 + "&objL8= " + self.objL8 + "&format= " + self.format + "&jsonVD= " + self.jsonVD + "&PrdSe= " + self.prdSe + "&startPrdDe= " + self.startPrdDe + "&endPrdDe= " + self.endPrdDe + "&orgId= " + self.orgId + "&tblId= " + self.tblId
+            url = (
+                f"{self.baseUrl}&apiKey={self.apiKey}&itmId={self.itmId}&objL1={self.objL1}"
+                f"&objL2={self.objL2}&objL3={self.objL3}&objL4={self.objL4}&objL5={self.objL5}"
+                f"&objL6={self.objL6}&objL7={self.objL7}&objL8={self.objL8}&format={self.format}"
+                f"&jsonVD={self.jsonVD}&prdSe={self.prdSe}&startPrdDe={self.startPrdDe}"
+                f"&endPrdDe={self.endPrdDe}&orgId={self.orgId}&tblId={self.tblId}"
+            )
+            return url
         def setApiKey(self, apiKey: str):
             self.apiKey = apiKey
         def setItmId(self, itmId: str):

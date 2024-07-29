@@ -20,14 +20,14 @@ class UrlObjectFactory:
         objL7 = self.extractParameter(r'objL7=[^&]*')
         objL8 = self.extractParameter(r'objL8=[^&]*')
         itmId = self.extractParameter(r'itmId=[^&]*')
-        prdSe = self.extractParameter(r'PrdSe=[^&]*')
+        prdSe = self.extractParameter(r'prdSe=[^&]*')
         startPrdDe = self.extractParameter(r'startPrdDe=[^&]*')
         endPrdDe = self.extractParameter(r'endPrdDe=[^&]*')
         newEstPrdCnt = self.extractParameter(r'newEstPrdCnt=[^&]*')
         prdInterval = self.extractParameter(r'prdInterval=[^&]*')
         format = self.extractParameter(r'format=[^&]*')
         jsonVD = self.extractParameter(r'jsonVD=[^&]*')
-        return KosisUrl(baseUrl, apiKey, itmId, objL1, objL2, objL3, objL4, objL5, objL6, objL7, objL8, format, jsonVD, prdSe, startPrdDe, endPrdDe, orgId, tblId)
+        return KosisUrl.KosisUrl(baseUrl, apiKey, itmId, objL1, objL2, objL3, objL4, objL5, objL6, objL7, objL8, format, jsonVD, prdSe, startPrdDe, endPrdDe, orgId, tblId)
     
     def extract_base_url(self) -> str:
         parsed_url = urlparse(self.fullUrl)
@@ -36,6 +36,6 @@ class UrlObjectFactory:
         
     def extractParameter(self, pattern: str) -> str:
         match = re.search(pattern, self.fullUrl)
-        return match.group(0).split('=')[1] if match else None
+        return match.group(0).split('=')[1] if match else ''
     
     
