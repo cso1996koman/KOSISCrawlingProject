@@ -22,16 +22,22 @@ class Crawler:
 
     def save_as_csv(self, jsonData):
         df = pd.DataFrame(jsonData)
-
-        files = [f for f in os.listdir('.') if f.startswith('data_') and f.endswith('.csv')]
-        if files:
-            max_num = max([int(f.split('_')[1].split('.')[0]) for f in files])
-            next_num = max_num + 1
+        
+        if not df.empty:
+            tbl_nm = df.iloc[0]['TBL_NM']
+            tbl_id = df.iloc[0]['TBL_ID']
+            file_name = f'{tbl_nm}_{tbl_id}.csv'
+            
+            if os.path.exists(file_name):
+                # Append to existing file
+                df.to_csv(file_name, mode='a', header=False, index=False)
+                print(f'Appended JSON response to {file_name}')
+            else:
+                # Create new file
+                df.to_csv(file_name, index=False)
+                print(f'Saved JSON response as {file_name}')
         else:
-            next_num = 1
-        file_name = f'data_{next_num}.csv'
-        df.to_csv(file_name, index=False)
-        print(f'Saved JSON response as {file_name}')
+            print('No data to save.')
 
     def parse_response(self):
         if self.response.status_code == 200:

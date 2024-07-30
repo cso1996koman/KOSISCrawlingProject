@@ -1,3 +1,7 @@
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from Crawler import Crawler
+
 class KosisUrl:
         def __init__(self, baseUrl, apiKey, itmId, objL1, objL2, objL3, objL4, objL5, objL6, objL7, objL8, format, jsonVD, prdSe, startPrdDe, endPrdDe, orgId, tblId):
             self.baseUrl = baseUrl
@@ -27,6 +31,7 @@ class KosisUrl:
                 f"&endPrdDe={self.endPrdDe}&orgId={self.orgId}&tblId={self.tblId}"
             )
             return url
+
         def setApiKey(self, apiKey: str):
             self.apiKey = apiKey
         def setItmId(self, itmId: str):
